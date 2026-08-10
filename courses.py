@@ -1,0 +1,154 @@
+courses = {}
+
+def create_course(): #class creation menu function#
+
+    course_code = (input("\nPlease enter the class code: ")).upper().strip()
+    course_name = input("Please enter the class name: ")
+    course_credit = int(input("Please enter the amount of class credit: "))
+    course_capacity = int(input("Please enter the class capacity: "))
+
+    courses[course_code] = {
+        "code": course_code ,
+        "name":  course_name , 
+        "credits":  course_credit , 
+        "capacity":  course_capacity , 
+        "enrolled_students":  []
+    }
+
+    print(f"{course_code} - {course_name} added as a new class")
+
+def enroll_course(course_code , student_id , student_info):
+    
+    course_info = courses[course_code]
+
+    if course_code in student_info["enrolled_courses"]:
+        print(f"You are already enrolled in {course_info[course_code]}")
+        return
+
+    if len(course_info["enrolled_students"]) >= course_info["capacity"]:
+        print("This class is full")
+        return
+    
+    course_info["enrolled_students"].append()(student_id)
+    student_info["enrolled_classes"].append()(course_code)
+
+    print(f"You have succesfully enrolled in {course_code} - {course_info["name"]}")
+
+
+    
+def view_course_list_admin(): #class view menu function for admins#
+    if not courses: 
+        print("\nThere is no existing classes")
+        return
+
+    print("\nCourse List: ")
+
+    for course_code, course_info in courses.items():
+        print(f"\n{course_code} - {course_info['name']}")
+        
+    
+    while True:
+        
+        print("1. Search a class")
+        print("2. Quit")
+        view_class_option = int(input("Please select an option: "))
+
+        while view_class_option == 1:
+    
+            course_input = input("\nPlease type the code of the course you want to view: ").upper().strip()
+
+            if course_input not in courses:
+                print(f"{course_input} can not find")
+                continue
+    
+    
+            else:
+                
+                
+                course_info = courses[course_input]
+                
+                print(f"{course_info["code"]} - {course_info["name"]}")
+                print(f"Course Credit: {course_info["credits"]}")
+                print(f"Course Capacity: {course_info["capacity"]}")
+                print(f"Enrolled Students: {course_info["enrolled_students"]}")
+
+            print("1. Search another class")
+            print("2. Quit")
+            search_class_option = int(input("Please select an option: "))
+
+            if search_class_option == 1:
+                view_class_option = 1
+
+            elif search_class_option == 2:
+                view_class_option = 2
+            
+            else:
+                print("Please select a valid option")
+
+
+        if view_class_option == 2:
+            break 
+
+        else:
+            print("Please select a valid option")
+
+    return 
+
+
+
+def view_course_list_student(student_id = None , student_info = None): #class view menu function for students #
+    if not courses: 
+        print("\nThere is no existing classes")
+        return
+
+    print("\nCourse List: ")
+
+    for course_code, course_info in courses.items():
+        print(f"\n{course_code} - {course_info['name']}")
+        
+    
+    while True:
+        
+        print("1. Search a class")
+        print("2. Quit")
+        view_class_option = int(input("Please select an option: "))
+
+        while view_class_option == 1:
+    
+            course_input = input("\nPlease type the code of the course you want to view: ").upper().strip()
+
+            if course_input not in courses:
+                print(f"{course_input} can not find")
+                continue
+    
+    
+            else:
+                
+                course_info = courses[course_input]
+                
+                print(f"{course_info["code"]} - {course_info["name"]}")
+                print(f"Course Credit: {course_info["credits"]}")
+                print(f"Course Capacity: {course_info["capacity"]}")
+                
+            print("1. Search another class")
+            print("2. Quit")
+            search_class_option = int(input("Please select an option: "))
+
+            if search_class_option == 1:
+                view_class_option = 1
+
+            elif search_class_option == 2:
+                view_class_option = 2
+            
+            else:
+                print("Please select a valid option")
+
+
+        if view_class_option == 2:
+            break 
+
+        else:
+            print("Please select a valid option")
+
+    return 
+

@@ -1,0 +1,115 @@
+from courses import create_course , view_course_list_admin , view_course_list_student
+from admin import admin_login 
+from student import student_login
+
+
+def student_menu(): #Student menu function# 
+
+    login_result = student_login()
+
+    if not login_result:
+        return
+    
+    student_id , student_info = login_result 
+    
+    print(f"\nWelcome to CUNY Student Portal - {student_info['name']}")
+
+    while True: 
+                
+        print("\n1. View Your GPA")
+        print("2. View Your Transcript")
+        print("3. View Class List")
+        print("4. View Enrolled Classes")
+        print("5. Back to Main Menu")
+        
+        student_option = int(input("\nPlease select your operation: "))
+
+        if student_option == 1:
+            pass
+
+        elif student_option == 2:
+            pass
+
+        elif student_option == 3:
+            view_course_list_student(student_id , student_info)
+
+        elif student_option == 4:
+            pass
+
+        elif student_option == 5:
+            break
+
+        else: 
+            print("Your operation is invalid.")
+
+
+
+def admin_menu(): #Admin menu function#
+        
+    login_result = admin_login()
+
+    if not login_result:
+        return
+    
+    admin_id , admin_info = login_result 
+    
+   
+    print(f"\nWelcome to CUNY Admin Portal - {admin_info['name']} ")
+
+    while True:
+            
+        print("\n1. View Classes")
+        print("2. Create a new class")
+        print("3. View a Student")
+        print("4. Back to Main Menu")
+
+        admin_option = int(input("\nPlease select your operation: "))
+
+        if admin_option == 1:
+            view_course_list_admin()
+        
+        elif admin_option == 2:
+            create_course()
+
+        elif admin_option == 3:
+            pass
+
+        elif admin_option == 4:
+            break
+
+        else:
+            print("Your option is invalid")
+
+
+
+def main_menu(): #Main menu function#
+
+    print("Welcome to CUNY portal")   
+
+    while True:
+    
+        print("\n1. Student")
+        print("2. Admin")
+        print("3. Quit")
+
+        login_option = int(input("\nPlease select your login: "))
+    
+        if login_option == 1:
+            student_menu()
+
+
+        elif login_option == 2:
+            admin_menu()
+       
+
+        elif login_option == 3:
+            break 
+
+        else:
+            print("Your option is invalid")
+
+
+
+
+main_menu()        
+

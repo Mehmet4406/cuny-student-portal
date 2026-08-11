@@ -1,3 +1,6 @@
+from courses import create_course , view_course_list_admin , view_course_list_student , enroll_course
+
+
 students = {
     "S001" : {
         "name" : "Ayberk" , 
@@ -44,3 +47,32 @@ def student_login():
 
 
 
+def manage_courses_student(student_id , student_info):
+
+    while True: 
+
+        print("\n1. View Classes")
+        print("2. View Enrolled Classes")
+        print("3. Back")
+        
+        manage_classes_student_option = int(input("Please select your operation: "))
+
+        if manage_classes_student_option == 1:
+        
+                    view_course_list_student(student_id , student_info)
+        
+                    
+                
+
+        elif manage_classes_student_option == 2:
+            pass
+            
+        
+        elif manage_classes_student_option == 3:
+            break
+        
+        
+        else: 
+            print("Please select a valid option")
+
+    

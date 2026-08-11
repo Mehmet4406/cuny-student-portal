@@ -1,6 +1,7 @@
 from courses import create_course , view_course_list_admin , view_course_list_student
 from admin import admin_login 
-from student import student_login
+from student import student_login , manage_courses_student
+
 
 
 def student_menu(): #Student menu function# 
@@ -18,9 +19,8 @@ def student_menu(): #Student menu function#
                 
         print("\n1. View Your GPA")
         print("2. View Your Transcript")
-        print("3. View Class List")
-        print("4. View Enrolled Classes")
-        print("5. Back to Main Menu")
+        print("3. Manage Classes")
+        print("4. Back to Main Menu")
         
         student_option = int(input("\nPlease select your operation: "))
 
@@ -31,12 +31,9 @@ def student_menu(): #Student menu function#
             pass
 
         elif student_option == 3:
-            view_course_list_student(student_id , student_info)
+            manage_courses_student(student_id , student_info)
 
         elif student_option == 4:
-            pass
-
-        elif student_option == 5:
             break
 
         else: 

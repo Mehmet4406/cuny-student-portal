@@ -19,20 +19,24 @@ def create_course(): #class creation menu function#
 
 def enroll_course(course_code , student_id , student_info):
     
+    if course_code not in courses:
+        print("This class does not exist")
+        return 
+
     course_info = courses[course_code]
 
     if course_code in student_info["enrolled_courses"]:
-        print(f"You are already enrolled in {course_info[course_code]}")
+        print(f"You are already enrolled in {course_info['name']}")
         return
 
     if len(course_info["enrolled_students"]) >= course_info["capacity"]:
         print("This class is full")
         return
     
-    course_info["enrolled_students"].append()(student_id)
-    student_info["enrolled_classes"].append()(course_code)
+    course_info["enrolled_students"].append(student_id)
+    student_info["enrolled_courses"].append(course_code)
 
-    print(f"You have succesfully enrolled in {course_code} - {course_info["name"]}")
+    print(f"You have successfully enrolled in {course_code} - {course_info['name']}")
 
 
     

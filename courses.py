@@ -17,7 +17,7 @@ def create_course(): #class creation menu function#
 
     print(f"{course_code} - {course_name} added as a new class")
 
-def enroll_course(course_code , student_id , student_info):
+def enroll_course(course_code , student_id , student_info): #class enrollment function for students#
     
     if course_code not in courses:
         print("This class does not exist")
@@ -113,9 +113,13 @@ def view_course_list_student(student_id = None , student_info = None): #class vi
     
     while True:
         
+        
         print("1. Search a class")
         print("2. Quit")
         view_class_option = int(input("Please select an option: "))
+
+        
+
 
         while view_class_option == 1:
     
@@ -133,19 +137,43 @@ def view_course_list_student(student_id = None , student_info = None): #class vi
                 print(f"{course_info["code"]} - {course_info["name"]}")
                 print(f"Course Credit: {course_info["credits"]}")
                 print(f"Course Capacity: {course_info["capacity"]}")
+
                 
-            print("1. Search another class")
-            print("2. Quit")
+                
+            print("1. Enroll in this class")
+            print("2. Search another class")
+            print("3. Quit")
             search_class_option = int(input("Please select an option: "))
+
+            while search_class_option == 1:
+
+                confirm_cancel_enrollment = input("Please type 'ENROLL' to confirm the enrollment or type 'CANCEL' to cancel the enrollment: ").upper().strip()
+            
+
+                if confirm_cancel_enrollment == "ENROLL":
+                    enroll_course(course_input , student_id , student_info )
+                    return  
+
+                elif confirm_cancel_enrollment == "CANCEL":
+                    print("You have successfully cancelled the enrollment and directed back to search menu")
+                    break 
+
+                else:
+                    print("Please type a valid option")
 
             if search_class_option == 1:
                 view_class_option = 1
 
             elif search_class_option == 2:
-                view_class_option = 2
-            
+                view_class_option = 1 
+
+            elif search_class_option == 3:
+                view_class_option = 2 
+
             else:
-                print("Please select a valid option")
+                print("Please type a valid option")
+            
+
 
 
         if view_class_option == 2:
@@ -155,4 +183,8 @@ def view_course_list_student(student_id = None , student_info = None): #class vi
             print("Please select a valid option")
 
     return 
+
+
+
+
 

@@ -1,4 +1,4 @@
-admins = {
+admins = {      
     "A001" : {
         "name" : "Mehmet" , 
         "email" : "mehmet@cuny.edu" ,
@@ -18,7 +18,7 @@ admins = {
     }
 }
 
-def admin_login():
+def admin_login(): #login menu function for admins#
 
     while True:
     

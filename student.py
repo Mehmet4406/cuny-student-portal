@@ -30,7 +30,7 @@ students = {
     }
 }
 
-def student_login():
+def student_login(): #login menu function for students#
 
     while True:
 
@@ -47,7 +47,7 @@ def student_login():
 
 
 
-def manage_courses_student(student_id , student_info):
+def manage_courses_student(student_id , student_info): #course management menu function for students#
 
     while True: 
 

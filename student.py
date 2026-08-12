@@ -1,3 +1,5 @@
+from utils import get_int_input
+
 from courses import create_course , view_course_list_admin , view_course_list_student , enroll_course
 
 
@@ -55,7 +57,7 @@ def manage_courses_student(student_id , student_info): #course management menu f
         print("2. View Enrolled Classes")
         print("3. Back")
         
-        manage_classes_student_option = int(input("Please select your operation: "))
+        manage_classes_student_option = get_int_input("Please select your operation: ")
 
         if manage_classes_student_option == 1:
         

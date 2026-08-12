@@ -1,12 +1,13 @@
+from utils import get_int_input
+
 courses = {}
 
 def create_course(): #class creation menu function#
 
     course_code = (input("\nPlease enter the class code: ")).upper().strip()
     course_name = input("Please enter the class name: ")
-    course_credit = int(input("Please enter the amount of class credit: "))
-    course_capacity = int(input("Please enter the class capacity: "))
-
+    course_credit = get_int_input("Please enter the amount of class credit: ")
+    course_capacity = get_int_input("Please enter the class capacity: ")
     courses[course_code] = {
         "code": course_code ,
         "name":  course_name , 
@@ -55,7 +56,7 @@ def view_course_list_admin(): #class view menu function for admins#
         
         print("1. Search a class")
         print("2. Quit")
-        view_class_option = int(input("Please select an option: "))
+        view_class_option = get_int_input("\nPlease select your operation: ")
 
         while view_class_option == 1:
     
@@ -78,7 +79,7 @@ def view_course_list_admin(): #class view menu function for admins#
 
             print("1. Search another class")
             print("2. Quit")
-            search_class_option = int(input("Please select an option: "))
+            search_class_option = get_int_input("\nPlease select your operation: ")
 
             if search_class_option == 1:
                 view_class_option = 1
@@ -116,7 +117,7 @@ def view_course_list_student(student_id = None , student_info = None): #class vi
         
         print("1. Search a class")
         print("2. Quit")
-        view_class_option = int(input("Please select an option: "))
+        view_class_option = get_int_input("\nPlease select your operation: ")
 
         
 
@@ -143,7 +144,7 @@ def view_course_list_student(student_id = None , student_info = None): #class vi
             print("1. Enroll in this class")
             print("2. Search another class")
             print("3. Quit")
-            search_class_option = int(input("Please select an option: "))
+            search_class_option = get_int_input("\nPlease select your operation: ")
 
             while search_class_option == 1:
 

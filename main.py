@@ -1,6 +1,7 @@
 from courses import create_course , view_course_list_admin , view_course_list_student
 from admin import admin_login 
 from student import student_login , manage_courses_student
+from utils import get_int_input
 
 
 
@@ -22,7 +23,7 @@ def student_menu(): #Student menu function#
         print("3. Manage Classes")
         print("4. Back to Main Menu")
         
-        student_option = int(input("\nPlease select your operation: "))
+        student_option = get_int_input("\nPlease select your operation: ")
 
         if student_option == 1:
             pass
@@ -60,7 +61,7 @@ def admin_menu(): #Admin menu function#
         print("3. View a Student")
         print("4. Back to Main Menu")
 
-        admin_option = int(input("\nPlease select your operation: "))
+        admin_option = get_int_input("\nPlease select your operation: ")
 
         if admin_option == 1:
             view_course_list_admin()
@@ -89,7 +90,7 @@ def main_menu(): #Main menu function#
         print("2. Admin")
         print("3. Quit")
 
-        login_option = int(input("\nPlease select your login: "))
+        login_option = get_int_input("\nPlease select your operation: ")
     
         if login_option == 1:
             student_menu()

@@ -1,0 +1,19 @@
+{      
+    "A001" : {
+        "name" : "Mehmet" , 
+        "email" : "mehmet@cuny.edu" ,
+        "password" : "2005"  
+   } ,
+
+    "A002" : {
+        "name": "Haci" ,
+        "email": "haci@cuny.edu" ,
+        "password" : "1976" 
+    } , 
+
+    "A003" : {
+        "name" : "Gur" ,
+        "email" : "gur@cuny.edu" ,
+        "password" : "1975"  
+    }
+}

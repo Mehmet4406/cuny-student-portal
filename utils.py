@@ -1,4 +1,4 @@
-def get_int_input(prompt):
+def get_int_input(prompt):   #Reusable input validation function#
 
     while True:
         try: 

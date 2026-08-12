@@ -1,24 +1,7 @@
 from utils import get_int_input
+from data_manager import save_data , load_data
 
-admins = {      
-    "A001" : {
-        "name" : "Mehmet" , 
-        "email" : "mehmet@cuny.edu" ,
-        "password" : "2005" , 
-   } ,
-
-    "A002" : {
-        "name": "Haci" ,
-        "email": "haci@cuny.edu" ,
-        "password" : "1976" ,
-    } , 
-
-    "A003" : {
-        "name" : "Gur" ,
-        "email" : "gur@cuny.edu" ,
-        "password" : "1975" , 
-    }
-}
+admins = load_data("data/admins.json")
 
 def admin_login(): #login menu function for admins#
 

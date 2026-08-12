@@ -1,6 +1,7 @@
 from utils import get_int_input
+from data_manager import save_data , load_data 
 
-courses = {}
+courses = load_data("data/courses.json")
 
 def create_course(): #class creation menu function#
 
@@ -15,6 +16,8 @@ def create_course(): #class creation menu function#
         "capacity":  course_capacity , 
         "enrolled_students":  []
     }
+
+    save_data("data/courses.json" , courses)
 
     print(f"{course_code} - {course_name} added as a new class")
 

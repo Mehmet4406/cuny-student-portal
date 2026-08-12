@@ -1,36 +1,18 @@
 from utils import get_int_input
-
 from courses import create_course , view_course_list_admin , view_course_list_student , enroll_course
+from data_manager import save_data , load_data 
+
+students = load_data("data/students.json")
+
+def student_register(): #register menu function for students#
+    register_name = input("Please enter your first name: ").strip()
+    register_lastname = input("Please enter your last name: ").strip()
+    register_email = input("Please enter your email").strip().lower()
+    register_password = input("Please enter your password: ")
+    register_password_confirm = input("Please enter your password one more time to confirm: ")
 
 
-students = {
-    "S001" : {
-        "name" : "Ayberk" , 
-        "email" : "ayberk@cuny.edu" ,
-        "password" : "2005" , 
-        "major" : "Computer Science" ,
-        "gpa" : 0.0 ,
-        "enrolled_courses" : []
-   } ,
 
-    "S002" : {
-        "name": "Osman" ,
-        "email": "osman@cuny.edu" ,
-        "password" : "1976" ,
-        "major" : "business" , 
-        "gpa" : 0.0 , 
-        "enrolled_courses" : []
-    } , 
-
-    "S003" : {
-        "name" : "Emine" ,
-        "email" : "emine@cuny.edu" ,
-        "password" : "1975" , 
-        "major" : "Sociolgy" ,
-        "gpa" : 0.0 , 
-        "enrolled_courses" : []
-    }
-}
 
 def student_login(): #login menu function for students#
 

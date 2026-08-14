@@ -1,1 +1,9 @@
-{}
+{
+    "CSC101": {
+        "code": "CSC101",
+        "name": "Introduction to Computer Science",
+        "credits": 3,
+        "capacity": 30,
+        "enrolled_students": []
+    }
+}

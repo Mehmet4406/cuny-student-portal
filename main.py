@@ -1,44 +1,64 @@
 from courses import create_course , view_course_list_admin , view_course_list_student
 from admin import admin_login 
-from student import student_login , manage_courses_student
+from student import student_login , manage_courses_student , student_register
 from utils import get_int_input
 
 
 
 def student_menu(): #Student menu function# 
+    while True:
 
-    login_result = student_login()
+        print("\n1. Login")
+        print("2. Sign up")
+        print("3. Back To Main Menu")
 
-    if not login_result:
-        return
-    
-    student_id , student_info = login_result 
-    
-    print(f"\nWelcome to CUNY Student Portal - {student_info['name']}")
+        student_menu_operation = get_int_input("Please select your operation: ")
 
-    while True: 
-                
-        print("\n1. View Your GPA")
-        print("2. View Your Transcript")
-        print("3. Manage Classes")
-        print("4. Back to Main Menu")
+        if student_menu_operation == 1:
+            login_result = student_login()
+            if not login_result:
+                continue 
+
+            student_id , student_info = login_result
+
+            print(f"\nWelcome to CUNY Student Portal - {student_info['name']}")
         
-        student_option = get_int_input("\nPlease select your operation: ")
+            while True: 
+                        
+                print("\n1. View Your GPA")
+                print("2. View Your Transcript")
+                print("3. Manage Classes")
+                print("4. Back to Student Menu")
+                
+                student_option = get_int_input("\nPlease select your operation: ")
+        
+                if student_option == 1:
+                    pass
 
-        if student_option == 1:
-            pass
+                elif student_option == 2:
+                    pass
+        
+                elif student_option == 3:
+                    manage_courses_student(student_id , student_info)
+        
+                elif student_option == 4:
+                    break
 
-        elif student_option == 2:
-            pass
+                else: 
+                    print("Your operation is invalid.")
+        
 
-        elif student_option == 3:
-            manage_courses_student(student_id , student_info)
+        elif student_menu_operation == 2:
+            student_register()
 
-        elif student_option == 4:
+        elif student_menu_operation == 3:
             break
 
-        else: 
-            print("Your operation is invalid.")
+        else:
+            print("Your operation is invalid. ")
+    
+    
+    
 
 
 

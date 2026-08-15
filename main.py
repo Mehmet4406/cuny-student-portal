@@ -28,7 +28,7 @@ def student_menu(): #Student menu function#
                 print("\n1. View Your GPA")
                 print("2. View Your Transcript")
                 print("3. Manage Classes")
-                print("4. Back to Student Menu")
+                print("4. Log Out")
                 
                 student_option = get_int_input("\nPlease select your operation: ")
         

@@ -39,9 +39,14 @@ def enroll_course(course_code , student_id , student_info): #class enrollment fu
     
     course_info["enrolled_students"].append(student_id)
     student_info["enrolled_courses"].append(course_code)
+    save_data("data/courses.json" , courses)
+
+    students_data = load_data("data/students.json")
+    students_data[student_id] = student_info
+    save_data("data/students.json" , students_data)
 
     print(f"You have successfully enrolled in {course_code} - {course_info['name']}")
-
+    
 
     
 def view_course_list_admin(): #class view menu function for admins#
@@ -137,10 +142,13 @@ def view_course_list_student(student_id = None , student_info = None): #class vi
             else:
                 
                 course_info = courses[course_input]
+
+                available_seats = course_info["capacity"] - len(course_info["enrolled_students"])
                 
                 print(f"{course_info["code"]} - {course_info["name"]}")
                 print(f"Course Credit: {course_info["credits"]}")
                 print(f"Course Capacity: {course_info["capacity"]}")
+                print(f"Available Seats: {available_seats}")
 
                 
                 
@@ -155,8 +163,14 @@ def view_course_list_student(student_id = None , student_info = None): #class vi
             
 
                 if confirm_cancel_enrollment == "ENROLL":
-                    enroll_course(course_input , student_id , student_info )
-                    return  
+
+                    if available_seats > 0:
+                        enroll_course(course_input , student_id , student_info )
+                        return
+
+                    else:
+                        print("This class has no available seats")
+                        break   
 
                 elif confirm_cancel_enrollment == "CANCEL":
                     print("You have successfully cancelled the enrollment and directed back to search menu")
@@ -187,6 +201,33 @@ def view_course_list_student(student_id = None , student_info = None): #class vi
             print("Please select a valid option")
 
     return 
+
+
+def drop_course(course_code , student_id , student_info):
+    if course_code not in courses:
+            print("This class does not exist")
+            return 
+    
+    course_info = courses[course_code]
+    
+    if course_code not in student_info["enrolled_courses"]:
+            print(f"You are not enrolled in {course_info['name']}")
+            return
+
+    if student_id not in course_info["enrolled_students"]:
+        print("Enrollment data is inconsistent. Please seek help from advisor.")
+        return
+    
+        
+    course_info["enrolled_students"].remove(student_id)
+    student_info["enrolled_courses"].remove(course_code)
+    save_data("data/courses.json" , courses)
+    
+    students_data = load_data("data/students.json")
+    students_data[student_id] = student_info
+    save_data("data/students.json" , students_data)
+    
+    print(f"You have successfully dropped {course_code} - {course_info['name']}")
 
 
 

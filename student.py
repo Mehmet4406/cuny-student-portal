@@ -1,5 +1,5 @@
 from utils import get_int_input
-from courses import create_course , view_course_list_admin , view_course_list_student , enroll_course
+from courses import create_course , view_course_list_admin , view_course_list_student , enroll_course , courses ,drop_course 
 from data_manager import save_data , load_data 
 
 students = load_data("data/students.json")
@@ -84,17 +84,14 @@ def manage_courses_student(student_id , student_info): #course management menu f
         print("2. View Enrolled Classes")
         print("3. Back")
         
-        manage_classes_student_option = get_int_input("Please select your operation: ")
+        manage_classes_student_option = get_int_input("\nPlease select your operation: ")
 
         if manage_classes_student_option == 1:
+            view_course_list_student(student_id , student_info)
         
-                    view_course_list_student(student_id , student_info)
-        
-                    
-                
 
         elif manage_classes_student_option == 2:
-            pass
+            view_enrolled_classes(student_id , student_info)
             
         
         elif manage_classes_student_option == 3:
@@ -103,5 +100,79 @@ def manage_courses_student(student_id , student_info): #course management menu f
         
         else: 
             print("Please select a valid option")
+
+
+def view_enrolled_classes(student_id , student_info): #view enrolled classes menu function for students#
+
+    if not student_info["enrolled_courses"]:
+        print("\nYou are not enrolled in any classes.")
+        return
+
+    for course_code in student_info["enrolled_courses"]:
+         course_info = courses[course_code]
+
+         print(f"\n{course_info['code']} - {course_info['name']} - {course_info['credits']} Credits") 
+
+    print("\n1. Manage Enrolled Courses")
+    print("2. Back")
+
+    enrolled_classes_operation = get_int_input("\nPlease select your operation: ")
+
+    if enrolled_classes_operation == 1: 
+
+        while True:
+
+            select_course_manage = input("Please enter the course code").upper().strip()
+
+            if select_course_manage not in student_info["enrolled_courses"]:
+                print("You are not enrolled in this class.")
+                continue
+
+            else:
+                course_info = courses[select_course_manage]
+
+                print(f"\n{course_info['code']}")
+                print(f"{course_info['name']}")
+                print(f"{course_info['credits']} Credits")
+                break 
+
+        while True:
+
+            print("\n1. Drop This Class")
+            print("2. Cancel")
+
+            drop_cancel_operation = get_int_input("\nPlease select your operation: ")
+
+            if drop_cancel_operation == 1:
+
+                while True:
+
+                    drop_confirmation = input("Please type 'DROP' to drop the class or type 'CANCEL' to cancel.").upper().strip()
+
+                    if drop_confirmation == "DROP":
+                        drop_course(select_course_manage , student_id , student_info)
+                        return 
+
+
+                    elif drop_confirmation == "CANCEL":
+                        break 
+
+                    else:
+                        print("Please select a valid option.")
+
+            elif drop_cancel_operation == 2:
+                break 
+
+            else:
+                print("Please select a valid option: ")
+
+
+
+    elif enrolled_classes_operation == 2: 
+        print("You have been directed to Manage Classes Menu") 
+
+    else:
+        print("Please select a valid option.")
+
 
     

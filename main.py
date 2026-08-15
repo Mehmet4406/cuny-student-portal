@@ -1,6 +1,6 @@
-from courses import create_course , view_course_list_admin , view_course_list_student
-from admin import admin_login 
-from student import student_login , manage_courses_student , student_register
+from courses import create_course , view_course_list_admin , view_course_list_student , view_transcript
+from admin import admin_login , admin_view_student , assign_grade , assign_major 
+from student import student_login , manage_courses_student , student_register ,student_profile 
 from utils import get_int_input
 
 
@@ -25,7 +25,7 @@ def student_menu(): #Student menu function#
         
             while True: 
                         
-                print("\n1. View Your GPA")
+                print("\n1. View Your Profile")
                 print("2. View Your Transcript")
                 print("3. Manage Classes")
                 print("4. Log Out")
@@ -33,10 +33,10 @@ def student_menu(): #Student menu function#
                 student_option = get_int_input("\nPlease select your operation: ")
         
                 if student_option == 1:
-                    pass
+                    student_profile(student_id , student_info)
 
                 elif student_option == 2:
-                    pass
+                    view_transcript(student_info)
         
                 elif student_option == 3:
                     manage_courses_student(student_id , student_info)
@@ -90,7 +90,7 @@ def admin_menu(): #Admin menu function#
             create_course()
 
         elif admin_option == 3:
-            pass
+            admin_view_student()
 
         elif admin_option == 4:
             break

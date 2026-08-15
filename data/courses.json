@@ -4,6 +4,28 @@
         "name": "Introduction to Computer Science",
         "credits": 3,
         "capacity": 30,
-        "enrolled_students": []
+        "enrolled_students": [
+            "S001"
+        ]
+    },
+
+    "ENG101" : {
+        "code": "ENG101",
+        "name": "Introduction to English Language",
+        "credits": 4,
+        "capacity": 26,
+        "enrolled_students": [
+            "S001"
+        ]
+    },
+
+    "POL101": {
+        "code": "POL101",
+        "name": "Introduction to American Politics",
+        "credits": 3,
+        "capacity": 24,
+        "enrolled_students": [
+            "S001"
+        ]
     }
 }

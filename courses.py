@@ -1,6 +1,23 @@
 from utils import get_int_input
 from data_manager import save_data , load_data 
 
+grade_points = {
+    "A+": 4.0,
+    "A": 4.0,
+    "A-": 3.7,
+    "B+": 3.3,
+    "B": 3.0,
+    "B-": 2.7,
+    "C+": 2.3,
+    "C": 2.0,
+    "C-": 1.7,
+    "D+": 1.3,
+    "D": 1.0,
+    "D-": 0.7,
+    "F": 0.0
+}
+ 
+
 courses = load_data("data/courses.json")
 
 def create_course(): #class creation menu function#
@@ -228,6 +245,51 @@ def drop_course(course_code , student_id , student_info):
     save_data("data/students.json" , students_data)
     
     print(f"You have successfully dropped {course_code} - {course_info['name']}")
+
+
+
+def calculate_gpa(student_info):
+
+    courses_data = load_data("data/courses.json")
+
+    total_grade_points = 0 
+    total_credits = 0 
+
+    for course_code , grade in student_info["grades"].items():
+
+        course_info = courses_data[course_code]
+
+        credits = course_info["credits"]
+        points = grade_points[grade]
+
+        total_grade_points += points * credits 
+        total_credits += credits 
+
+    if total_credits == 0:
+        return 0.0 
+
+    gpa = total_grade_points / total_credits 
+
+    return round(gpa , 2)
+
+def view_transcript(student_info):
+
+    if not student_info["grades"]:
+        print("\nThere is no graded classes to create a transcript.")
+        return
+
+    courses_data = load_data("data/courses.json")
+
+    print("-------------TRANSCRIPT-------------")
+
+    for course_code , grade in student_info["grades"].items():
+
+        course_info = courses_data[course_code]
+        print(f"{course_code} - {course_info['name']}   -   Credits: {course_info['credits']}   -   {grade}")
+
+    print(f"\nCumulative GPA: {student_info['gpa']}")
+
+    
 
 
 

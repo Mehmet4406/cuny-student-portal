@@ -5,8 +5,17 @@
         "email": "ayberk@cuny.edu",
         "password": "2005",
         "major": "Computer Science",
-        "gpa": 0.0,
-        "enrolled_courses": []
+        "gpa": 2.69,
+        "enrolled_courses": [
+            "CSC101",
+            "ENG101",
+            "POL101"
+        ],
+        "grades": {
+            "CSC101": "B+",
+            "ENG101": "C",
+            "POL101": "B"
+        }
     },
     "S002": {
         "name": "Osman",
@@ -15,7 +24,8 @@
         "password": "1976",
         "major": "Business",
         "gpa": 0.0,
-        "enrolled_courses": []
+        "enrolled_courses": [],
+        "grades": {}
     },
     "S003": {
         "name": "Emine",
@@ -24,7 +34,8 @@
         "password": "1975",
         "major": "Sociolgy",
         "gpa": 0.0,
-        "enrolled_courses": []
+        "enrolled_courses": [],
+        "grades": {}
     },
     "S004": {
         "name": "Utku",
@@ -33,6 +44,7 @@
         "password": "2005",
         "major": "Undeclared",
         "gpa": 0.0,
-        "enrolled_courses": []
+        "enrolled_courses": [],
+        "grades": {}
     }
 }

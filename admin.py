@@ -1,5 +1,7 @@
 from utils import get_int_input
 from data_manager import save_data , load_data
+from courses import calculate_gpa , grade_points , view_transcript
+
 
 admins = load_data("data/admins.json")
 
@@ -58,18 +60,28 @@ def admin_view_student():  #view student menu function for admins#
 
                     print("\n1. Assign or Update Major")
                     print("2. Assign or Update Grades")
-                    print("3. Back to Student Details")
+                    print("3. View Transctipt")
+                    print("4. Back to Student Details")
 
                     manage_student_option = get_int_input("\nPlease select an option: ")
 
                     if manage_student_option == 1:
                         assign_major(student_id , student_info , students_data)
+                        break
 
                     elif manage_student_option == 2:
-                        pass 
+                        assign_grade(student_id , student_info , students_data)
+                        break 
 
                     elif manage_student_option == 3:
+                        view_transcript(student_info)
                         break
+
+                    elif manage_student_option == 4:
+                        break
+
+                    else:
+                        print("Please select a valid option.")
 
                 
 
@@ -85,15 +97,55 @@ def admin_view_student():  #view student menu function for admins#
 
 def assign_major(student_id , student_info , students_data):
 
-    new_major = input("Please enter the student's new major: ")
+    while True:
 
-    if not new_major:
-        print("Major can not be empty")
+        new_major = input("Please enter the student's new major: ").strip()
+
+        if not new_major:
+            print("Major can not be empty")
+            continue
+
+        student_info["major"] = new_major
+        students_data[student_id] = student_info
+
+        save_data("data/students.json" , students_data)
+
+        print(f"{student_info['name']} {student_info['lastname']}'s major successfully updated to {new_major}.")
+
+        break 
+
+def assign_grade(student_id , student_info , students_data):
+
+    if not student_info["enrolled_courses"]:
+        print("This student is not enrolled to any class. ")
         return
 
-    student_info["major"] = new_major
+    for course_code in student_info["enrolled_courses"]:
+        print(course_code)
+
+    while True:
+        course_code = input("Please enter the course code you want to grade: ").upper().strip()
+
+        if course_code not in student_info["enrolled_courses"]:
+            print(f"{student_info['name']} {student_info['lastname']} is not enrolled in {course_code}")
+            continue
+        break 
+
+
+    while True:
+
+        grade = input("Please enter the grade: ").upper().strip()
+
+        if grade not in grade_points:
+            print("Please enter a valid grade. ")
+            continue
+        break 
+
+    student_info["grades"][course_code] = grade
+    student_info["gpa"] = calculate_gpa(student_info)
     students_data[student_id] = student_info
+    save_data("data/students.json" , students_data)
 
-    save_data("data/students'json" , students_data)
+    print(f"{student_info['name']} {student_info['lastname']}'s grade successfully updated to {grade}.")
 
-    print(f"{student_info['name']} {student_info['lastname']}'s major successfully updated to {new_major}.")
+        

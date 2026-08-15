@@ -29,7 +29,8 @@ def student_register(): #register menu function for students#
          "password" : register_password , 
          "major" : "Undeclared" ,
          "gpa" : 0.0 ,
-         "enrolled_courses" : []
+         "enrolled_courses" : [] ,
+         "grades" : {}
     }
 
     save_data("data/students.json" , students)
@@ -60,6 +61,8 @@ def generate_student_id(): #student id generator function#
 
 
 def student_login(): #login menu function for students#
+
+    students_data = load_data("data/students.json") 
 
     while True:
 
@@ -173,6 +176,17 @@ def view_enrolled_classes(student_id , student_info): #view enrolled classes men
 
     else:
         print("Please select a valid option.")
+
+
+def student_profile(student_id , student_info):
+
+    print(f"\nStudent ID: {student_id}")
+    print(f"Name: {student_info['name']}")
+    print(f"Last Name: {student_info['lastname']}")
+    print(f"Email: {student_info['email']}")
+    print(f"Major: {student_info['major']}")
+    print(f"GPA: {student_info['gpa']}")
+    print(f"Enrolled Courses: {student_info['enrolled_courses']}")
 
 
     

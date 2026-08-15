@@ -147,7 +147,7 @@ def view_enrolled_classes(student_id , student_info): #view enrolled classes men
 
                 while True:
 
-                    drop_confirmation = input("Please type 'DROP' to drop the class or type 'CANCEL' to cancel.").upper().strip()
+                    drop_confirmation = input("Please type 'DROP' to drop the class or type 'CANCEL' to cancel: ").upper().strip()
 
                     if drop_confirmation == "DROP":
                         drop_course(select_course_manage , student_id , student_info)

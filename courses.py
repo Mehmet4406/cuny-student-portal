@@ -43,6 +43,8 @@ def delete_course(): #class delete menu function for admins#
 
     while True:
 
+        view_course_list_admin()
+
         course_code = input("Please enter the course code you want to delete: ").upper().strip()
 
         if course_code not in courses:

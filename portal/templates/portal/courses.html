@@ -1,0 +1,11 @@
+<h1>CUNY Course List</h1>
+
+{% for course in course_list %}
+
+<p>
+    {{ course.code }} -
+    {{ course.name }} -
+    {{ course.credits }} - Credits
+</p>
+
+{% endfor %}

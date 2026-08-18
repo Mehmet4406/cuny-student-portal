@@ -5,25 +5,47 @@
         "credits": 3,
         "capacity": 30,
         "enrolled_students": [
-            "S001"
+            "S001",
+            "S005",
+            "S004",
+            "S007"
         ]
     },
-
-    "ENG101" : {
+    "ENG101": {
         "code": "ENG101",
         "name": "Introduction to English Language",
         "credits": 4,
         "capacity": 26,
         "enrolled_students": [
-            "S001"
+            "S001",
+            "S005",
+            "S007"
         ]
     },
-
     "POL101": {
         "code": "POL101",
         "name": "Introduction to American Politics",
         "credits": 3,
         "capacity": 24,
+        "enrolled_students": [
+            "S001",
+            "S005",
+            "S004",
+            "S007"
+        ]
+    },
+    "PHY101": {
+        "code": "PHY101",
+        "name": "Introduction to Physics",
+        "credits": 4,
+        "capacity": 26,
+        "enrolled_students": []
+    },
+    "BIO101": {
+        "code": "BIO101",
+        "name": "Introduction to Biology",
+        "credits": 4,
+        "capacity": 1,
         "enrolled_students": [
             "S001"
         ]

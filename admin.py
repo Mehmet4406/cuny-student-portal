@@ -1,6 +1,6 @@
 from utils import get_int_input
 from data_manager import save_data , load_data
-from courses import calculate_gpa , grade_points , view_transcript
+from courses import calculate_gpa , grade_points , view_transcript , view_course_list_admin , create_course ,delete_course
 
 
 admins = load_data("data/admins.json")
@@ -60,7 +60,7 @@ def admin_view_student():  #view student menu function for admins#
 
                     print("\n1. Assign or Update Major")
                     print("2. Assign or Update Grades")
-                    print("3. View Transctipt")
+                    print("3. View Transcript")
                     print("4. Back to Student Details")
 
                     manage_student_option = get_int_input("\nPlease select an option: ")
@@ -97,13 +97,30 @@ def admin_view_student():  #view student menu function for admins#
 
 def assign_major(student_id , student_info , students_data):
 
+    majors = [
+    "Computer Science",
+    "Business Administration",
+    "Mathematics",
+    "Economics",
+    "Psychology",
+    "Liberal Arts"
+]
+
+    print("\nAvailable Majors: ")
+
+    for index, major in enumerate(majors , start = 1):
+        print(f"{index}. {major}")
+
+
     while True:
 
-        new_major = input("Please enter the student's new major: ").strip()
+        major_option = get_int_input("Please select a major: ")
 
-        if not new_major:
-            print("Major can not be empty")
+        if major_option < 1 or major_option > len(majors):
+            print("Please select a valid major.")
             continue
+
+        new_major = majors[major_option - 1]
 
         student_info["major"] = new_major
         students_data[student_id] = student_info
@@ -113,6 +130,7 @@ def assign_major(student_id , student_info , students_data):
         print(f"{student_info['name']} {student_info['lastname']}'s major successfully updated to {new_major}.")
 
         break 
+
 
 def assign_grade(student_id , student_info , students_data):
 
@@ -148,4 +166,30 @@ def assign_grade(student_id , student_info , students_data):
 
     print(f"{student_info['name']} {student_info['lastname']}'s grade successfully updated to {grade}.")
 
-        
+
+def manage_courses_admin():
+
+    while True:
+
+        print("1. View Classes")
+        print("2. Create a New Class")
+        print("3. Delete a Classs")
+        print("4. Back")
+
+        manage_courses_admin_option = get_int_input("Please select your operation: ")
+
+        if manage_courses_admin_option == 1:
+            view_course_list_admin() 
+
+        elif manage_courses_admin_option == 2:
+            create_course()
+
+        elif manage_courses_admin_option == 3:
+            delete_course() 
+
+        elif manage_courses_admin_option == 4: 
+            break 
+
+        else:
+            print("Please select a valid option.")
+            

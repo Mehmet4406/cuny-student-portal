@@ -2,9 +2,12 @@ from utils import get_int_input
 from courses import create_course , view_course_list_admin , view_course_list_student , enroll_course , courses ,drop_course 
 from data_manager import save_data , load_data 
 
-students = load_data("data/students.json")
+
 
 def student_register(): #register menu function for students#
+
+    students_data = load_data("data/students.json")
+
     register_name = input("Please enter your first name: ").strip()
     register_lastname = input("Please enter your last name: ").strip()
     register_email = input("Please enter your email: ").strip().lower()
@@ -15,14 +18,14 @@ def student_register(): #register menu function for students#
          print("Passwords do not match.")
          return 
 
-    for student_info in students.values():
+    for student_info in students_data.values():
          if student_info["email"].lower().strip() == register_email:
               print("This email is already in use.")
               return 
 
-    new_student_id = generate_student_id()
+    new_student_id = generate_student_id(students_data)
 
-    students[new_student_id] = {
+    students_data[new_student_id] = {
          "name" : register_name ,
          "lastname" : register_lastname ,
          "email" : register_email , 
@@ -33,17 +36,17 @@ def student_register(): #register menu function for students#
          "grades" : {}
     }
 
-    save_data("data/students.json" , students)
+    save_data("data/students.json" , students_data)
 
     print("Registration is successful!")
     print(f"Your student ID is {new_student_id}")
 
 
-def generate_student_id(): #student id generator function#
+def generate_student_id(students_data): #student id generator function#
 
         highest_student_number = 0 
 
-        for student_id in students:
+        for student_id in students_data:
             student_number = int(student_id[1:])     #"1:" is used to skip the index 0 so we don't pull "S"#
 
             if student_number > highest_student_number:
@@ -53,31 +56,23 @@ def generate_student_id(): #student id generator function#
         new_student_id = f"S{new_student_number:03d}" #"03d" is used to make new student number at least 3 digits#
         return new_student_id 
 
-        
-         
-         
-
-
-
-
+            
 def student_login(): #login menu function for students#
 
     students_data = load_data("data/students.json") 
 
     while True:
 
-        student_email = input("Please enter your email: ")
+        student_email = input("Please enter your email: ").strip().lower()
         student_password = input("Please enter your password: ")
 
-        for student_id, student_info in students.items():
-            if student_info["email"] == student_email and student_info["password"] == student_password:
+        for student_id, student_info in students_data.items():
+            if student_info["email"].strip().lower() == student_email and student_info["password"] == student_password:
                 return student_id , student_info
 
         
         print("Email or password is incorrect. Please try again.")
             
-
-
 
 def manage_courses_student(student_id , student_info): #course management menu function for students#
 
@@ -125,7 +120,7 @@ def view_enrolled_classes(student_id , student_info): #view enrolled classes men
 
         while True:
 
-            select_course_manage = input("Please enter the course code").upper().strip()
+            select_course_manage = input("Please enter the course code: ").upper().strip()
 
             if select_course_manage not in student_info["enrolled_courses"]:
                 print("You are not enrolled in this class.")

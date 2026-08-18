@@ -38,6 +38,39 @@ def create_course(): #class creation menu function#
 
     print(f"{course_code} - {course_name} added as a new class")
 
+
+def delete_course(): #class delete menu function for admins#
+
+    while True:
+
+        course_code = input("Please enter the course code you want to delete: ").upper().strip()
+
+        if course_code not in courses:
+            print("This class does not exist. ")
+            continue
+
+        course_info = courses[course_code]
+
+        if course_info["enrolled_students"]:
+            print("You can not delete a class that has enrolled students.")
+            continue
+
+        delete_course_confirmation = input(f"\nYou are about to delete {course_code} - {course_info['name']}. Please type DELETE to confirm or CANCEL to cancel deletion: ").upper().strip()
+
+        if delete_course_confirmation == "CANCEL":
+            return
+
+        if delete_course_confirmation != "DELETE":
+            print("Please type a valid option.")
+            continue
+
+        del courses[course_code]
+        save_data("data/courses.json" , courses)
+
+        print(f"You have successfully deleted {course_code} - {course_info['name']}.")
+        return
+
+
 def enroll_course(course_code , student_id , student_info): #class enrollment function for students#
     
     if course_code not in courses:
@@ -64,7 +97,6 @@ def enroll_course(course_code , student_id , student_info): #class enrollment fu
 
     print(f"You have successfully enrolled in {course_code} - {course_info['name']}")
     
-
     
 def view_course_list_admin(): #class view menu function for admins#
     if not courses: 
@@ -123,7 +155,6 @@ def view_course_list_admin(): #class view menu function for admins#
             print("Please select a valid option")
 
     return 
-
 
 
 def view_course_list_student(student_id = None , student_info = None): #class view menu function for students #
@@ -222,19 +253,23 @@ def view_course_list_student(student_id = None , student_info = None): #class vi
 
 def drop_course(course_code , student_id , student_info):
     if course_code not in courses:
-            print("This class does not exist")
-            return 
+        print("This class does not exist.")
+        return 
     
     course_info = courses[course_code]
     
     if course_code not in student_info["enrolled_courses"]:
-            print(f"You are not enrolled in {course_info['name']}")
-            return
+        print(f"You are not enrolled in {course_info['name']}")
+        return
+
+    if course_code in student_info["grades"]:
+        print("You can not drop a class that has already been graded.")
+        return
+        
 
     if student_id not in course_info["enrolled_students"]:
         print("Enrollment data is inconsistent. Please seek help from advisor.")
         return
-    
         
     course_info["enrolled_students"].remove(student_id)
     student_info["enrolled_courses"].remove(course_code)
@@ -245,7 +280,6 @@ def drop_course(course_code , student_id , student_info):
     save_data("data/students.json" , students_data)
     
     print(f"You have successfully dropped {course_code} - {course_info['name']}")
-
 
 
 def calculate_gpa(student_info):
@@ -271,6 +305,7 @@ def calculate_gpa(student_info):
     gpa = total_grade_points / total_credits 
 
     return round(gpa , 2)
+
 
 def view_transcript(student_info):
 

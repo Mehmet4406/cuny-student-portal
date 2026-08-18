@@ -9,7 +9,8 @@
         "enrolled_courses": [
             "CSC101",
             "ENG101",
-            "POL101"
+            "POL101",
+            "BIO101"
         ],
         "grades": {
             "CSC101": "B+",
@@ -41,6 +42,69 @@
         "name": "Utku",
         "lastname": "Dinc",
         "email": "utku@cuny.edu",
+        "password": "2005",
+        "major": "Mathematics",
+        "gpa": 2.8,
+        "enrolled_courses": [
+            "CSC101",
+            "POL101"
+        ],
+        "grades": {
+            "CSC101": "B-",
+            "ENG101": "D",
+            "POL101": "A-"
+        }
+    },
+    "S005": {
+        "name": "Taner",
+        "lastname": "Doganay",
+        "email": "taner@cuny.edu",
+        "password": "0413",
+        "major": "Computer Science",
+        "gpa": 3.1,
+        "enrolled_courses": [
+            "CSC101",
+            "POL101",
+            "ENG101"
+        ],
+        "grades": {
+            "CSC101": "A+",
+            "POL101": "D",
+            "ENG101": "A+"
+        }
+    },
+    "S006": {
+        "name": "Batu",
+        "lastname": "Sayar",
+        "email": "batu@cuny.edu",
+        "password": "2005",
+        "major": "Undeclared",
+        "gpa": 0.0,
+        "enrolled_courses": [],
+        "grades": {}
+    },
+    "S007": {
+        "name": "Onur",
+        "lastname": "Basaran",
+        "email": "onur@cuny.edu",
+        "password": "2005",
+        "major": "Economics",
+        "gpa": 3.7,
+        "enrolled_courses": [
+            "ENG101",
+            "CSC101",
+            "POL101"
+        ],
+        "grades": {
+            "ENG101": "A",
+            "CSC101": "B",
+            "POL101": "A"
+        }
+    },
+    "S008": {
+        "name": "Halit",
+        "lastname": "Efe",
+        "email": "halit@cuny.edu",
         "password": "2005",
         "major": "Undeclared",
         "gpa": 0.0,

@@ -1,5 +1,5 @@
 from courses import create_course , view_course_list_admin , view_course_list_student , view_transcript
-from admin import admin_login , admin_view_student , assign_grade , assign_major 
+from admin import admin_login , admin_view_student , assign_grade , assign_major , manage_courses_admin
 from student import student_login , manage_courses_student , student_register ,student_profile 
 from utils import get_int_input
 
@@ -57,11 +57,7 @@ def student_menu(): #Student menu function#
         else:
             print("Your operation is invalid. ")
     
-    
-    
-
-
-
+        
 def admin_menu(): #Admin menu function#
         
     login_result = admin_login()
@@ -76,28 +72,23 @@ def admin_menu(): #Admin menu function#
 
     while True:
             
-        print("\n1. View Classes")
-        print("2. Create a new class")
-        print("3. View a Student")
-        print("4. Back to Main Menu")
+        print("1. Manage Classes")
+        print("2. View a Student")
+        print("3. Back to Main Menu")
 
         admin_option = get_int_input("\nPlease select your operation: ")
 
         if admin_option == 1:
-            view_course_list_admin()
+            manage_courses_admin()
         
         elif admin_option == 2:
-            create_course()
-
-        elif admin_option == 3:
             admin_view_student()
 
-        elif admin_option == 4:
+        elif admin_option == 3:
             break
 
         else:
             print("Your option is invalid")
-
 
 
 def main_menu(): #Main menu function#
@@ -125,8 +116,6 @@ def main_menu(): #Main menu function#
 
         else:
             print("Your option is invalid")
-
-
 
 
 main_menu()        

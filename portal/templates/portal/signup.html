@@ -1,0 +1,13 @@
+<h1>CUNY Student Sign Up Menu</h1>
+
+<form method = "post">
+    <!-- Security token required by Django for POST forms.
+         It protects the form against CSRF attacks. -->
+    {% csrf_token %}
+
+    <!-- Render all fields from the Django form.
+         "as_p" displays each field inside a <p> element. -->
+    {{ form.as_p }}
+
+    <button type = "submit">Sign Up</button>
+</form>

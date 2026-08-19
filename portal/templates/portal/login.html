@@ -1,0 +1,14 @@
+<h1>Student Login</h1>
+
+{% if form.errors %}
+    <p>Username or password is incorrect.</p>
+{% endif %}
+
+
+<form method = "post">
+
+    {% csrf_token %}
+    {{ form.as_p}}
+
+    <button type = "submit">Login</button>
+</form>

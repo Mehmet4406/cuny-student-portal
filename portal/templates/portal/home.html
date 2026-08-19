@@ -1,8 +1,19 @@
 <h1>CUNY Student Portal</h1>
 
-<p>Welcome to the CUNY Student Portal.</p>
+{% if user.is_authenticated %}
+    <p>Welcome, {{user.first_name}}</p>
 
-<button>Login</button>
-<button>Sign Up</button>
+    <form method = "post" action = "{% url 'logout' %}">
+        {% csrf_token %}
+        <button type = "submit">Logout</button>
+    </form>
 
-<a href="/courses/">Courses</a>
+{% else %}
+    <p>Welcome to the CUNY Student Portal.</p>
+
+    <a href = "{% url 'login' %}">Login</a>
+    <a href = "{% url 'signup' %}">Sign Up</a>
+
+{% endif %}
+
+<a href = "/courses/">Courses</a>

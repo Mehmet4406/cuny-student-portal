@@ -1,0 +1,15 @@
+<h1>Student Profile</h1>
+
+
+<h2>Personal Information</h2>
+
+<p>First Name: {{user.first_name}}</p>
+<P>Last Name: {{user.last_name}}</P>
+<p>Username: {{user.username}}</p>
+<p>Email: {{user.email}}</p>
+
+
+<h2>Academic Information</h2>
+<p>Student ID: {{student.student_id}}</p>
+<p>Major: {{student.major|default:"You are not assigned to any major. Please contact your advisor to get help."}}</p>
+<p>GPA: N/A</p>

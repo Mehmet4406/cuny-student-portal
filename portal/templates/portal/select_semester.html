@@ -1,0 +1,15 @@
+<h1>Class Enrollment Wizard</h1>
+
+<h2>Please select a semester to continue enrollment</h2>
+
+{% for semester in semesters %}
+
+    <form action = "{% url 'select_courses' semester.name %}" method = get>
+        <button type = "submit">
+            {{semester.name}}
+        </button>
+    </form>
+
+{% endfor %}
+
+<a href = "{% url 'dashboard' %}">Back to Dashboard</a>

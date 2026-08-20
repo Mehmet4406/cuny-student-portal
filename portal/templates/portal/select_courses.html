@@ -1,0 +1,24 @@
+<h1>Enroll for {{semester.name}}</h1>
+
+<h2>Select Your Courses</h2>
+
+{% for course in courses %}
+
+    <div>
+        <h3>{{course.code}} - {{course.name}}</h3>
+        <p>Credits: {{course.credits}}</p>
+
+        <button type = "button">Enroll Now</button>
+        <button type = "button">Add to Cart</button>
+
+    </div>
+
+    <hr>
+
+{% empty %}
+    <p>No classes are currently available</p>
+
+{% endfor %}
+
+<a href = "{% url 'select_semester' %}">Choose Another Semester</a>
+<a href = "{% url 'dashboard' %}">Back To Dashboard</a>

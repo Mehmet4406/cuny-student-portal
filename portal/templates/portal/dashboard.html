@@ -1,0 +1,9 @@
+<h1>CUNY Student Portal</h1>
+
+<p>Welcome, {{user.first_name}}</p>
+
+
+<a href = "{% url 'student_profile' %}">Student Profile</a>
+<a href = "{% url 'courses' %}">Browse Classes</a>
+<a href = "{% url 'home' %}">Home</a> 
+<a href = "{% url 'select_semester' %}">Enroll Courses</a>

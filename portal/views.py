@@ -1,16 +1,43 @@
 from django.http import HttpResponse 
-from django.shortcuts import render , redirect
-from .models import Course , StudentProfile
+from django.shortcuts import render , redirect , get_object_or_404
+from .models import Course , StudentProfile , Semester
 from .forms import StudentSignUpForm
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     return render(request , "portal/home.html")
 
+
+@login_required
+def dashboard(request):
+
+        student = request.user.studentprofile
+        return render(request , "portal/dashboard.html" , {"student" : student})
+
+
+@login_required
+def student_profile(request):
+
+    student = request.user.studentprofile
+    return render(request , "portal/student_profile.html" , {"student" : student})
+
+@login_required
+def select_semester(request):
+    semesters = Semester.objects.all()
+    return render(request , "portal/select_semester.html" , {"semesters" : semesters})
+
+@login_required
+def select_courses(request, semester_name):
+    semester = get_object_or_404(Semester , name = semester_name)
+    courses = Course.objects.all()
+    return render(request , "portal/select_courses.html" , {"semester" : semester , "courses" : courses})
+
+
 def courses(request):
 
     course_list = Course.objects.all()
-
     return render(request , "portal/courses.html" , {"course_list" : course_list })
+
 
 def signup(request):
     # GET request:

@@ -40,7 +40,22 @@ class AcademicDepartment(models.Model):
     def __str__(self):
         return self.name
     
+class ProfessorProfile(models.Model):
+    user = models.OneToOneField(User , on_delete = models.CASCADE)
+    professor_id = models.CharField(max_length = 10 , unique = True ,editable = False)
+    academic_department = models.ForeignKey(AcademicDepartment , on_delete= models.PROTECT)
 
+    def save(self , *args , **kwargs):
+        if not self.professor_id:
+            existing_ids = ProfessorProfile.objects.values_list("professor_id" , flat = True)
+            numeric_ids = [int(professor_id[1:]) for professor_id in existing_ids if professor_id.startswith("P") and professor_id[1:].isdigit()]
+            next_id = max(numeric_ids , default = 0) + 1
+
+            self.professor_id = f"P{next_id:03d}"
+        super().save(*args , **kwargs) 
+
+    def __str__(self):
+        return f"{self.user.get_full_name()} - {self.professor_id}"
 
 class Enrollment(models.Model):
     student = models.ForeignKey(StudentProfile , on_delete = models.CASCADE)
